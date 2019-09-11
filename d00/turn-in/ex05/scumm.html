@@ -1,0 +1,61 @@
+<!-- *********************************************************************** -->
+<!--                                                                         -->
+<!--                                                      :::      ::::::::  -->
+<!-- scumm.html                                         :+:      :+:    :+:  -->
+<!--                                                  +:+ +:+         +:+    -->
+<!-- By: patrisor <marvin@42.fr>                    +#+  +:+       +#+       -->
+<!--                                              +#+#+#+#+#+   +#+          -->
+<!-- Created: 2019/09/10 18:37:23 by patrisor          #+#    #+#            -->
+<!-- Updated: 2019/09/10 23:56:28 by patrisor         ###   ########.fr      -->
+<!--                                                                         -->
+<!-- *********************************************************************** -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Day of the 42</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="scumm.css">
+		<script type="text/javascript" src="scumm.js"></script>
+	</head>
+	<body>
+		<div class="gray-block top-block">
+			<img src="resources/day_of_the_42.png" alt="day_of_the_42" id="day_of_the_42"/>
+			<div id="top-right">
+				<a href="http://www.disney.com/" target="_blank"><img src="resources/reload.png" alt="Start from the beginning" id="reload"/></a>
+				<a href="https://www.relaischateaux.com/" target="_blank"><img src="resources/close.gif" alt="Disconnect" id="close"/></a>
+			</div>
+			<img src="resources/loupe.png" alt="loupe" id="loupe"/>
+		</div>
+		<div class="mid">
+			<div class="gray-block left-block">
+				<img src="resources/arrow.png" alt="Advance" id="arrow"/>
+				<img src="resources/main.png" alt="Take" id="hand"/>
+				<img src="resources/oeil.png" alt="Look" id="eye"/>
+				<img src="resources/outil.png" alt="Use" id="tools"/>
+				<img src="resources/chat-icon.png" alt="Speak" id="chat"/>
+			</div>
+			<div class="gray-block mid-block">
+				<img src="resources/cluster.jpg" alt="cluster" id="cluster"/>
+				<a href="http://www.ikea.com/" target="_blank" id="ikea"></a>
+				<a href="https://www.apple.com/" target="_blank" id="apple"></a>
+			</div>
+			<div class="gray-block right-block">
+				<img src="resources/book.png" alt="book" id="book"/>
+				<img src="resources/towel.png" alt="towel" id="towel"/>
+				<div id="bricks">
+					<img src="resources/brick.jpg" alt="brick" class="brick"/>
+					<img src="resources/brick.jpg" alt="brick" class="brick"/>
+				</div>
+			</div>
+			<div class="green">
+				<p id="info">You <span id="big">enter</span> a large room filled with<span id="ordinateur"> computers</span>...</p>
+				<p id="italic">- Hello, what's your name ?</p>
+				<form id="greenForm">
+					<input type="text" id="prompt">
+					<input type="button" value="Response" onclick="initiateGame()" id="repondre">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
