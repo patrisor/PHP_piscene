@@ -1,24 +1,21 @@
 #!/usr/bin/php
 <?php
-$source = "/var/run/utmpx";
-if (file_exists($source)) {
-	date_default_timezone_set('Europe/Athens');
-	$file = fopen($source, "r");
-	while ($entry = fread($file, filesize($source) / 8)) {
-		$unpack = unpack("a256a/a4b/a32c/id/ie/I2f/a256g/i16h", $entry);
-		$array[$unpack['c']] = $unpack;
-	}
-	ksort($array);
-	foreach ($array as $line) {
-		if ($line['e'] == 7) {
-			echo str_pad(substr(trim($line['a']), 0, 8), 8, " ")." ";
-			echo str_pad(substr(trim($line['c']), 0, 8), 8, " ")." ";
-			echo date("M", $line["f1"]);
-			echo str_pad(date("j", $line["f1"]), 3, " ", STR_PAD_LEFT)." ".
-				date("H:i", $line["f1"]);
-			echo "\n";
+	$file = fopen("/var/run/utmpx", "rb");
+	fseek($file, 1256);
+	date_default_timezone_set("America/Los_Angeles");
+	while (!feof($file))
+	{
+		$data = fread($file, 628);
+		if (strlen($data) == 628)
+		{
+			$data = unpack("a256user/a4id/a32line/ipid/itype/itime", $data);
+			if ($data['type'] == 7)
+			{
+				echo trim($data['user']) . " ";
+				echo trim($data['line']) . "  ";
+				$time = date("M d H:i", $data['time']);
+				echo $time . " \n";
+			}
 		}
 	}
-} else
-	echo "ERROR: System file 'utmpx' is missed\n";
 ?>
