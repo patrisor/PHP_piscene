@@ -1,40 +1,20 @@
 #!/usr/bin/php
 <?php
-function detect_and_replace() {
-	$f1 = $f2 = 0;
-	for ($i = 0; $i < count($arr) - 1; $i++){
-		if ($arr[$i] == '"') {
-			if($f1) {
-				$f2 = $i;
-				break;
-			}
-			$f1 = $i;
-		}
-	}
-}
-if (count($argv) == 2)
-{
-	//$ret = "";
-	$file = fopen($argv[1], "r");
-	if ($file) {
-		while (($line = fgets($file)) !== false) {
-			if (strpos($line, "<a"))
-			{
-				//$tmp = "";
-				$arr = str_split($line);	
-				
-				foreach (range($f1 + 1, $f2 - 1) as $a)
-					$arr[$a] = strtoupper($arr[$a]);
-				echo implode("", $arr);
-				
-				//$line = $tmp;
-			}
-			//$ret .= $line;
-		}
-		fclose($file);
-	} else
-		echo "error: could not open the file\n";
-	
-	#echo $ret;
-}
+if ($argc == 2 && file_exists($argv[1])) {
+	$str = file_get_contents($argv[1]);
+	$str = preg_replace_callback("/(<a )(.*?)(>)(.*)(<\/a>)/si",
+	function($matches) {
+		$matches[0] = preg_replace_callback("/( title=\")(.*?)(\")/mi",
+		function($matches) {
+			return ($matches[1]."".strtoupper($matches[2])."".$matches[3]);
+		}, $matches[0]);
+		$matches[0] = preg_replace_callback("/(>)(.*?)(<)/si",
+		function($matches) {
+			return ($matches[1]."".strtoupper($matches[2])."".$matches[3]);
+		}, $matches[0]);
+		return ($matches[0]);
+	}, $str);
+	echo $str;
+} else
+	exit("usage: ./magnifying_glass.php [valid_html_file]\n");
 ?>
