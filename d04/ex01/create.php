@@ -7,13 +7,10 @@ function	get_data()
 		(isset($_POST['submit']) && $_POST['submit'] === "OK"))
 	{
 		$tab['login'] = $_POST['login'];
-		$tab['passwd'] = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
+		$tab['passwd'] = hash('whirlpool', $_POST['passwd']);
 	}
 	else
-	{
-		echo "ERROR\n";
-		exit();
-	}
+		exit("ERROR\n");
 	return ($tab);
 }
 // Creates the path
@@ -37,16 +34,9 @@ else
 {
 	$unserialized = unserialize(file_get_contents($file));
 	foreach ($unserialized as $elem)
-	{
 		foreach ($elem as $login=>$value)
-		{
 			if ($value == $tab['login'])
-			{
-				echo "ERROR\n";
-				exit();
-			}
-		}
-	}
+				exit("ERROR\n");
 	$unserialized[] = $tab;
 	$serialized = serialize($unserialized);
 	file_put_contents($file, $serialized);
