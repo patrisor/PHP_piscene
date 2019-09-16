@@ -1,7 +1,6 @@
 <?php
     include("format.php");
 ?>
-
 <html>
     <head>
         <link rel="stylesheet" text="text/css" href="form.css">

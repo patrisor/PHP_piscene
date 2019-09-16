@@ -1,4 +1,3 @@
 <?php
-    include("format.php");
-    
+    include("format.php");    
 ?>

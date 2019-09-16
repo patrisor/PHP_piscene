@@ -2,11 +2,9 @@
     include("format.php");
     function checkFolder() {
         $contents = unserialize(file_get_contents("./htdocs/private/passwd"));
-        foreach ($contents as $users) {
-            if ($users['login'] === $_POST['login']) {
+        foreach ($contents as $users)
+            if ($users['login'] === $_POST['login'])
                 return (0);
-            }
-        }
         return (1);
     }
     function register() {
@@ -24,7 +22,6 @@
             return (0);
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

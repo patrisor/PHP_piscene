@@ -2,32 +2,27 @@
     include("format.php");
     function searchForItem($key) {
         $items = unserialize(file_get_contents("./csv/db"));
-        $item_amt = 18;
-        for ($i = 0; $i < $item_amt; $i++)
+		for ($i = 0; $i < count($items); $i++)
             if ($items[$i][1] === $key)
                 return ($items[$i]);
-    }
+	}
     function checkCookiesForItems() {
         $list_items = [];
-        foreach ($_COOKIE as $key => $value) {
-            if ($value != 0 && $key !== "PHPSESSIONID") {
-                $list_items[] = searchForItem($key);
-            }
-        }
+        foreach ($_COOKIE as $key => $value)
+            if ($value != 0 && $key !== "PHPSESSIONID")
+				$list_items[] = searchForItem($key);
         return ($list_items);
     }
     function totalPrice() {
         $sum = 0;
-        foreach (checkCookiesForItems() as $products) {
-            if ($products)
-                $sum += ($products[2] * $_COOKIE[$products[1]]);
-        }
+        foreach (checkCookiesForItems() as $products)
+			if ($products)
+				$sum += ($products[2] * $_COOKIE[$products[1]]);
         return ($sum);
     }
     if (isset($_POST["qty"]) && isset($_POST["qty"]) != "" && ($_COOKIE[$_POST["submit"]] - (int)$_POST["qty"] >= 0))
 		setcookie($_POST["submit"], $_COOKIE[$_POST["submit"]] - (int)$_POST["qty"], time() + 84600, '/');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

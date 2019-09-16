@@ -1,13 +1,5 @@
 <?php
 	include("format.php");
-
-	// if (!(isset($_COOKIE["Goku"])))
-	// 	setcookie($_POST["Goku"], 0, time() + 3600);
-	// else {
-		// echo "Cookie : " .is_numeric($_COOKIE["Goku"]);
-		// echo "Qty : " . is_numeric((int)$_POST["qty"]);
-		//setcookie($_POST["Goku"], $_COOKIE["Goku"] + (int)$_POST["qty"], time() + 3600, '/');
-	//}echo $_COOKIE["Goku"];
 	if (isset($_POST["qty"]) && isset($_POST["qty"]) != "")
 		setcookie($_POST["submit"], $_COOKIE[$_POST["submit"]] + (int)$_POST["qty"], time() + 84600, '/');
 ?>

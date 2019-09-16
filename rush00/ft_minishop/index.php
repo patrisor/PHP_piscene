@@ -1,16 +1,4 @@
 <?php
-	/* Total items and number of items to display on webpage */
-	function randomItems() {
-		$num_total_items = 18;
-		$num_display_items = 5;
-		$random_num_array = [];
-		for ($i = 0; $i < $num_display_items; $i++) {
-			$random_num_array[] = mt_rand(0, $num_total_items);
-		}
-		return ($random_num_array);
-	}
-	
-
 	// THIS IS USED WHEN LOGGGING IN
 	// The include_once() statement can be used to include a php file in another one, when you may need to 
 	// include the called file more than once

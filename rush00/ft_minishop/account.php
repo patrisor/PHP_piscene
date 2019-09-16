@@ -1,7 +1,6 @@
 <?php
      include("format.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

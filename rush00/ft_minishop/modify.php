@@ -2,11 +2,9 @@
     include("format.php");
     function userExists() {
         $contents = unserialize(file_get_contents("./htdocs/private/passwd"));
-        foreach ($contents as $users) {
-            if ($_POST['login'] === $users['login']) {
+        foreach ($contents as $users)
+            if ($_POST['login'] === $users['login'])
                 return (1);
-            }
-        }
         return (0);
     }
     function pwdCheck() {
